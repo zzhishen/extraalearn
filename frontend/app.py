@@ -1,9 +1,16 @@
 
 import streamlit as st
 import requests
+import os
+from dotenv import load_dotenv  # Install python-dotenv to load .env files
 
-# Base URL of the Flask backend
-BACKEND_URL = "http://backend:7860"
+# Load environment variables from .env file (never commit .env to git!)
+load_dotenv()
+
+# Get backend URL of the Flask backend from environment variable - NO HARDCODING!
+# Fallback to local dev URL only if ENV var is missing (for local development)
+BACKEND_URL = os.getenv("EXTRA_LEARN_BACKEND_URL", "http://localhost:7860")
+
 
 # Page title
 st.title("Lead Prediction System")
